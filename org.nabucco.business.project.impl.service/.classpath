@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="out/ide/main/gen" path="src/main/gen"/>
+	<classpathentry kind="src" output="out/ide/main/man" path="src/main/man"/>
+	<classpathentry kind="src" output="out/ide/test/gen" path="src/test/gen"/>
+	<classpathentry kind="src" output="out/ide/test/man" path="src/test/man"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.nabucco.business.project.facade.datatype"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.nabucco.business.project.facade.exception"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.nabucco.business.project.facade.message"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.nabucco.business.project.facade.service"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.nabucco.business.project.facade.component"/>
+	<classpathentry kind="lib" path="/org.nabucco.business.project/lib/impl/ejb3-persistence.jar"/>
+	<classpathentry kind="lib" path="/org.nabucco.business.project/lib/impl/jboss-javaee.jar"/>
+	<classpathentry kind="lib" path="/org.nabucco.business.project/lib/impl/org.nabucco.common.cache.jar"/>
+	<classpathentry kind="lib" path="/org.nabucco.business.project/lib/impl/org.nabucco.common.extension.jar"/>
+	<classpathentry kind="lib" path="/org.nabucco.business.project/lib/impl/org.nabucco.framework.base.facade.jar"/>
+	<classpathentry kind="lib" path="/org.nabucco.business.project/lib/impl/org.nabucco.framework.base.impl.jar"/>
+	<classpathentry kind="output" path="out/ide"/>
+</classpath>

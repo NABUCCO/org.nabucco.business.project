@@ -1,0 +1,66 @@
+/*
+* Copyright 2011 PRODYNA AG
+*
+* Licensed under the Eclipse Public License (EPL), Version 1.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.opensource.org/licenses/eclipse-1.0.php or
+* http://www.nabucco-source.org/nabucco-license.html
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+package org.nabucco.business.project.facade.service.produce;
+
+import org.nabucco.business.project.facade.message.ProjectCharacteristicMsg;
+import org.nabucco.business.project.facade.message.ProjectPositionAssigneeMsg;
+import org.nabucco.business.project.facade.message.ProjectPositionMsg;
+import org.nabucco.business.project.facade.message.ProjectRelationMsg;
+import org.nabucco.business.project.facade.message.ProjectSpecificationMsg;
+import org.nabucco.business.project.facade.message.ProjectTaskMsg;
+import org.nabucco.business.project.facade.message.produce.ProjectCharacteristicPrototypeRq;
+import org.nabucco.business.project.facade.message.produce.ProjectRelationPrototypeRq;
+import org.nabucco.framework.base.facade.exception.service.ProduceException;
+
+@Author			Nicolas Moser
+@Company		PRODYNA AG
+@Date			2011-09-26
+@Version		1.0
+@Description	Produce Service for the Project Component
+public Service ProduceProject {
+
+	@Description			Produce a new Project Characteristic.
+	@JoinPoint				org.nabucco.aspect.initializing
+	@ManualImplementation
+	public ProjectCharacteristicMsg produceProjectCharacteristic(ProjectCharacteristicPrototypeRq rq) throws ProduceException;
+
+	@Description			Produce a new Project Relation.
+	@JoinPoint				org.nabucco.aspect.initializing
+	@ManualImplementation
+	public ProjectRelationMsg produceProjectRelation(ProjectRelationPrototypeRq rq) throws ProduceException;
+
+	@Description			Produce a new Project Position.
+	@JoinPoint				org.nabucco.aspect.initializing
+	@ManualImplementation
+	public ProjectPositionMsg produceProjectPosition() throws ProduceException;
+
+	@Description			Produce a new Project Position Assignee.
+	@JoinPoint				org.nabucco.aspect.initializing
+	@ManualImplementation
+	public ProjectPositionAssigneeMsg produceProjectPositionAssignee() throws ProduceException;
+	
+	@JoinPoint				org.nabucco.aspect.initializing
+	@Description			Produce the task
+	@ManualImplementation
+	public ProjectTaskMsg produceProjectTask() throws ProduceException;
+
+	@Description			Produce a new Project Specification.
+	@JoinPoint				org.nabucco.aspect.initializing
+	@ManualImplementation
+	public ProjectSpecificationMsg produceProjectSpecification() throws ProduceException;
+
+}

@@ -1,0 +1,70 @@
+/*
+* Copyright 2010 PRODYNA AG
+*
+* Licensed under the Eclipse Public License (EPL), Version 1.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.opensource.org/licenses/eclipse-1.0.php or
+* http://www.nabucco-source.org/nabucco-license.html
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+package org.nabucco.business.project.facade.component;
+
+import org.nabucco.business.project.facade.datatype.PlainProject;
+import org.nabucco.business.project.facade.datatype.ProjectCharacteristic;
+import org.nabucco.business.project.facade.datatype.ProjectMaster;
+import org.nabucco.business.project.facade.datatype.ProjectPosition;
+import org.nabucco.business.project.facade.datatype.ProjectPositionAssignee;
+import org.nabucco.business.project.facade.datatype.ProjectRelation;
+import org.nabucco.business.project.facade.datatype.ProjectSpecification;
+import org.nabucco.business.project.facade.datatype.ProjectTask;
+import org.nabucco.business.project.facade.service.maintain.MaintainProject;
+import org.nabucco.business.project.facade.service.produce.ProduceProject;
+import org.nabucco.business.project.facade.service.resolve.ResolveProject;
+import org.nabucco.business.project.facade.service.search.SearchProject;
+
+
+@Author			Dominic Trumpfheller
+@Company		PRODYNA AG
+@Date			2010-11-30
+@Version		1.0
+@Description	Component for Project Management.
+public Component ProjectComponent {
+
+	/** Persistent Datatypes */
+
+	private persistent Datatype ProjectMaster[1] projectMaster;
+
+	private persistent Datatype ProjectCharacteristic[1] projectCharacteristic;
+
+	@Referenceable
+	private persistent Datatype PlainProject[1] plainProject;
+
+	@Referenceable
+	private persistent Datatype ProjectPosition[1] projectPosition;
+	
+	private persistent Datatype ProjectSpecification[1] projectSpecification;
+
+	private persistent Datatype ProjectPositionAssignee[1] projectPositionAssignee;
+
+	private persistent Datatype ProjectRelation[1] projectRelation;
+	
+	private persistent Datatype ProjectTask[1] projectTask;
+
+	/** Services*/
+
+	public Service MaintainProject;
+
+	public Service ProduceProject;
+
+	public Service ResolveProject;
+
+	public Service SearchProject;
+
+}
