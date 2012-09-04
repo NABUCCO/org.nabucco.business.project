@@ -37,7 +37,7 @@ public class ResolveProjectPositionServiceHandlerImpl extends ResolveProjectPosi
         try {
             projectPosition = super.getPersistenceManager().find(projectPosition);
             projectPosition.getAssigneeList().size();
-            projectPosition.getTaskList().size();
+            projectPosition.getProjectTaskList().size();
         } catch (Exception e) {
             throw new ResolveException("Cannot resolve ProjectPosition with id '" + projectPosition.getId() + "'.", e);
         }

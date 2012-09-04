@@ -35,7 +35,7 @@ public class MaintainProjectPositionAssigneeServiceHandlerImpl extends MaintainP
 
         try {
             ProjectPositionAssignee assignee = super.getPersistenceManager().persist(msg.getProjectPositionAssignee());
-            assignee.getTaskList().size();
+            assignee.getProjectTaskList().size();
 
             ProjectPositionAssigneeMsg rs = new ProjectPositionAssigneeMsg();
             rs.setProjectPositionAssignee(assignee);

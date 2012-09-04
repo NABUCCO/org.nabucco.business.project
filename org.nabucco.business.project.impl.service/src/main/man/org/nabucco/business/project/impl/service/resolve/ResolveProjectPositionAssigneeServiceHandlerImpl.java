@@ -37,7 +37,7 @@ public class ResolveProjectPositionAssigneeServiceHandlerImpl extends ResolvePro
 
         try {
             assignee = super.getPersistenceManager().find(assignee);
-            assignee.getTaskList().size();
+            assignee.getProjectTaskList().size();
         } catch (Exception e) {
             throw new ResolveException("Cannot resolve ProjectPosition Assignee with id '" + assignee.getId() + "'.", e);
         }

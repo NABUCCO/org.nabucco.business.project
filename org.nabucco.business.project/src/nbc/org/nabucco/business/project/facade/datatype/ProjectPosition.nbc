@@ -18,11 +18,11 @@ package org.nabucco.business.project.facade.datatype;
 
 import org.nabucco.business.project.facade.datatype.ProjectPositionAssignee;
 import org.nabucco.business.project.facade.datatype.ProjectTask;
-import org.nabucco.framework.base.facade.datatype.Description;
 import org.nabucco.framework.base.facade.datatype.NabuccoDatatype;
 import org.nabucco.framework.base.facade.datatype.Name;
 import org.nabucco.framework.base.facade.datatype.Owner;
 import org.nabucco.framework.base.facade.datatype.code.Code;
+import org.nabucco.framework.base.facade.datatype.text.LongDescription;
 
 @Author			Nicolas Moser
 @Company		PRODYNA AG
@@ -38,7 +38,7 @@ public Datatype ProjectPosition extends NabuccoDatatype {
 	private Basetype Owner[1] owner;
 	
 	@Description			Description of the Project Position
-	private Basetype Description[0..1] description;
+	private Basetype LongDescription[0..1] description;
 
 	@CodePath				nabucco.business.project.projectposition.role
 	@Description			Role of the assignee in this position.
@@ -50,7 +50,7 @@ public Datatype ProjectPosition extends NabuccoDatatype {
 	
 	@FetchStrategy			LAZY
 	@Description			The Tasks of the project position
-	private Datatype ProjectTask[0..*] taskList;
+	private Datatype ProjectTask[0..*] projectTaskList;
 		
 }
 

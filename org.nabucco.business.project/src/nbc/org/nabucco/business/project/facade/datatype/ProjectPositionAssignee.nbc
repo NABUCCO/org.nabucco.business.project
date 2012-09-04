@@ -31,9 +31,9 @@ public Datatype ProjectPositionAssignee extends NabuccoDatatype {
 	private Basetype Date[1] startDate;
 	
 	@Description	End Date of the Assignment.
-	private Basetype Date[1] endDate;
+	private Basetype Date[0..1] endDate;
 	
 	@FetchStrategy		LAZY
 	@Description		The Tasks of the project position assignee
-	private Datatype ProjectTask[0..*] taskList;
+	private Datatype ProjectTask[0..*] projectTaskList;
 }

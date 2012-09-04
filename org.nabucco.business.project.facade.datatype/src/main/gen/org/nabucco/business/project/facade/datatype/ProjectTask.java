@@ -1,18 +1,16 @@
 /*
  * Copyright 2012 PRODYNA AG
- *
- * Licensed under the Eclipse Public License (EPL), Version 1.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
+ * 
+ * Licensed under the Eclipse Public License (EPL), Version 1.0 (the "License"); you may not use
+ * this file except in compliance with the License. You may obtain a copy of the License at
+ * 
  * http://www.opensource.org/licenses/eclipse-1.0.php or
  * http://www.nabucco.org/License.html
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * 
+ * Unless required by applicable law or agreed to in writing, software distributed under the
+ * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 package org.nabucco.business.project.facade.datatype;
 
@@ -21,7 +19,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.nabucco.framework.base.facade.datatype.Datatype;
-import org.nabucco.framework.base.facade.datatype.Description;
 import org.nabucco.framework.base.facade.datatype.NabuccoDatatype;
 import org.nabucco.framework.base.facade.datatype.Name;
 import org.nabucco.framework.base.facade.datatype.property.NabuccoProperty;
@@ -29,6 +26,7 @@ import org.nabucco.framework.base.facade.datatype.property.NabuccoPropertyContai
 import org.nabucco.framework.base.facade.datatype.property.NabuccoPropertyDescriptor;
 import org.nabucco.framework.base.facade.datatype.property.PropertyCache;
 import org.nabucco.framework.base.facade.datatype.property.PropertyDescriptorSupport;
+import org.nabucco.framework.base.facade.datatype.text.LongDescription;
 
 /**
  * ProjectTask<p/>The task that need to be done<p/>
@@ -40,7 +38,7 @@ public class ProjectTask extends NabuccoDatatype implements Datatype {
 
     private static final long serialVersionUID = 1L;
 
-    private static final String[] PROPERTY_CONSTRAINTS = { "l0,255;u0,n;m1,1;", "l0,255;u0,n;m0,1;" };
+    private static final String[] PROPERTY_CONSTRAINTS = { "l0,255;u0,n;m1,1;", "l0,4000;u0,n;m0,1;" };
 
     public static final String NAME = "name";
 
@@ -50,7 +48,7 @@ public class ProjectTask extends NabuccoDatatype implements Datatype {
     private Name name;
 
     /** Deschription of the task */
-    private Description description;
+    private LongDescription description;
 
     /** Constructs a new ProjectTask instance. */
     public ProjectTask() {
@@ -87,7 +85,7 @@ public class ProjectTask extends NabuccoDatatype implements Datatype {
         propertyMap.putAll(PropertyCache.getInstance().retrieve(NabuccoDatatype.class).getPropertyMap());
         propertyMap.put(NAME,
                 PropertyDescriptorSupport.createBasetype(NAME, Name.class, 3, PROPERTY_CONSTRAINTS[0], false));
-        propertyMap.put(DESCRIPTION, PropertyDescriptorSupport.createBasetype(DESCRIPTION, Description.class, 4,
+        propertyMap.put(DESCRIPTION, PropertyDescriptorSupport.createBasetype(DESCRIPTION, LongDescription.class, 4,
                 PROPERTY_CONSTRAINTS[1], false));
         return new NabuccoPropertyContainer(propertyMap);
     }
@@ -113,8 +111,8 @@ public class ProjectTask extends NabuccoDatatype implements Datatype {
         if ((property.getName().equals(NAME) && (property.getType() == Name.class))) {
             this.setName(((Name) property.getInstance()));
             return true;
-        } else if ((property.getName().equals(DESCRIPTION) && (property.getType() == Description.class))) {
-            this.setDescription(((Description) property.getInstance()));
+        } else if ((property.getName().equals(DESCRIPTION) && (property.getType() == LongDescription.class))) {
+            this.setDescription(((LongDescription) property.getInstance()));
             return true;
         }
         return false;
@@ -200,18 +198,18 @@ public class ProjectTask extends NabuccoDatatype implements Datatype {
     /**
      * Deschription of the task
      *
-     * @return the Description.
+     * @return the LongDescription.
      */
-    public Description getDescription() {
+    public LongDescription getDescription() {
         return this.description;
     }
 
     /**
      * Deschription of the task
      *
-     * @param description the Description.
+     * @param description the LongDescription.
      */
-    public void setDescription(Description description) {
+    public void setDescription(LongDescription description) {
         this.description = description;
     }
 
@@ -225,7 +223,7 @@ public class ProjectTask extends NabuccoDatatype implements Datatype {
             if ((description == null)) {
                 return;
             }
-            this.description = new Description();
+            this.description = new LongDescription();
         }
         this.description.setValue(description);
     }

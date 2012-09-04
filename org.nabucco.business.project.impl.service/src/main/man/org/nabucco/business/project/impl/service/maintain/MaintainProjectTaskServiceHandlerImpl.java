@@ -31,18 +31,22 @@ public class MaintainProjectTaskServiceHandlerImpl extends MaintainProjectTaskSe
 
     @Override
     protected ProjectTaskMsg maintainProjectTask(ProjectTaskMsg msg) throws MaintainException {
+        ProjectTaskMsg taskMsg = new ProjectTaskMsg();
         try {
-            ProjectTask task = super.getPersistenceManager().persist(msg.getTask());
+            if (msg.getTask() != null) {
+                ProjectTask task = super.getPersistenceManager().persist(msg.getTask());
+                taskMsg.setTask(task);
+            } else if (msg.getTaskList() != null && msg.getTaskList().isEmpty() == false) {
+                for (ProjectTask task : msg.getTaskList()) {
+                    ProjectTask maintainedTask = super.getPersistenceManager().persist(task);
+                    taskMsg.getTaskList().add(maintainedTask);
+                }
+            }
 
-            ProjectTaskMsg taskMsg = new ProjectTaskMsg();
-            taskMsg.setTask(task);
             return taskMsg;
-
         } catch (Exception e) {
-            throw new MaintainException("Error maintaining task with id '"
-                    + msg.getTask().getId() + "'.");
+            throw new MaintainException("Error maintaining task with id '" + msg.getTask().getId() + "'.");
         }
     }
-
 
 }

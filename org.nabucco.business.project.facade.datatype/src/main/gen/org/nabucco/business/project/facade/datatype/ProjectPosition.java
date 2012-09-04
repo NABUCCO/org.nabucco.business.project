@@ -1,18 +1,16 @@
 /*
  * Copyright 2012 PRODYNA AG
- *
- * Licensed under the Eclipse Public License (EPL), Version 1.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
+ * 
+ * Licensed under the Eclipse Public License (EPL), Version 1.0 (the "License"); you may not use
+ * this file except in compliance with the License. You may obtain a copy of the License at
+ * 
  * http://www.opensource.org/licenses/eclipse-1.0.php or
  * http://www.nabucco.org/License.html
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * 
+ * Unless required by applicable law or agreed to in writing, software distributed under the
+ * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 package org.nabucco.business.project.facade.datatype;
 
@@ -23,7 +21,6 @@ import java.util.Set;
 import org.nabucco.business.project.facade.datatype.ProjectPositionAssignee;
 import org.nabucco.business.project.facade.datatype.ProjectTask;
 import org.nabucco.framework.base.facade.datatype.Datatype;
-import org.nabucco.framework.base.facade.datatype.Description;
 import org.nabucco.framework.base.facade.datatype.NabuccoDatatype;
 import org.nabucco.framework.base.facade.datatype.Name;
 import org.nabucco.framework.base.facade.datatype.Owner;
@@ -38,6 +35,7 @@ import org.nabucco.framework.base.facade.datatype.property.NabuccoPropertyDescri
 import org.nabucco.framework.base.facade.datatype.property.PropertyAssociationType;
 import org.nabucco.framework.base.facade.datatype.property.PropertyCache;
 import org.nabucco.framework.base.facade.datatype.property.PropertyDescriptorSupport;
+import org.nabucco.framework.base.facade.datatype.text.LongDescription;
 
 /**
  * ProjectPosition<p/>Position in a Project<p/>
@@ -50,7 +48,7 @@ public class ProjectPosition extends NabuccoDatatype implements Datatype {
     private static final long serialVersionUID = 1L;
 
     private static final String[] PROPERTY_CONSTRAINTS = { "l0,255;u0,n;m1,1;", "l3,12;u0,n;m1,1;",
-            "l0,255;u0,n;m0,1;", "m1,1;", "m0,n;", "m0,n;" };
+            "l0,4000;u0,n;m0,1;", "m1,1;", "m0,n;", "m0,n;" };
 
     public static final String NAME = "name";
 
@@ -62,7 +60,7 @@ public class ProjectPosition extends NabuccoDatatype implements Datatype {
 
     public static final String ASSIGNEELIST = "assigneeList";
 
-    public static final String TASKLIST = "taskList";
+    public static final String PROJECTTASKLIST = "projectTaskList";
 
     /** Name of the Project Position */
     private Name name;
@@ -71,7 +69,7 @@ public class ProjectPosition extends NabuccoDatatype implements Datatype {
     private Owner owner;
 
     /** Description of the Project Position */
-    private Description description;
+    private LongDescription description;
 
     /** Role of the assignee in this position. */
     private Code projectRole;
@@ -84,7 +82,7 @@ public class ProjectPosition extends NabuccoDatatype implements Datatype {
     private NabuccoList<ProjectPositionAssignee> assigneeList;
 
     /** The Tasks of the project position */
-    private NabuccoList<ProjectTask> taskList;
+    private NabuccoList<ProjectTask> projectTaskList;
 
     /** Constructs a new ProjectPosition instance. */
     public ProjectPosition() {
@@ -121,8 +119,8 @@ public class ProjectPosition extends NabuccoDatatype implements Datatype {
         if ((this.assigneeList != null)) {
             clone.assigneeList = this.assigneeList.cloneCollection();
         }
-        if ((this.taskList != null)) {
-            clone.taskList = this.taskList.cloneCollection();
+        if ((this.projectTaskList != null)) {
+            clone.projectTaskList = this.projectTaskList.cloneCollection();
         }
     }
 
@@ -151,27 +149,27 @@ public class ProjectPosition extends NabuccoDatatype implements Datatype {
     }
 
     /**
-     * Getter for the TaskListJPA.
+     * Getter for the ProjectTaskListJPA.
      *
      * @return the List<ProjectTask>.
      */
-    List<ProjectTask> getTaskListJPA() {
-        if ((this.taskList == null)) {
-            this.taskList = new NabuccoListImpl<ProjectTask>(NabuccoCollectionState.LAZY);
+    List<ProjectTask> getProjectTaskListJPA() {
+        if ((this.projectTaskList == null)) {
+            this.projectTaskList = new NabuccoListImpl<ProjectTask>(NabuccoCollectionState.LAZY);
         }
-        return ((NabuccoListImpl<ProjectTask>) this.taskList).getDelegate();
+        return ((NabuccoListImpl<ProjectTask>) this.projectTaskList).getDelegate();
     }
 
     /**
-     * Setter for the TaskListJPA.
+     * Setter for the ProjectTaskListJPA.
      *
-     * @param taskList the List<ProjectTask>.
+     * @param projectTaskList the List<ProjectTask>.
      */
-    void setTaskListJPA(List<ProjectTask> taskList) {
-        if ((this.taskList == null)) {
-            this.taskList = new NabuccoListImpl<ProjectTask>(NabuccoCollectionState.LAZY);
+    void setProjectTaskListJPA(List<ProjectTask> projectTaskList) {
+        if ((this.projectTaskList == null)) {
+            this.projectTaskList = new NabuccoListImpl<ProjectTask>(NabuccoCollectionState.LAZY);
         }
-        ((NabuccoListImpl<ProjectTask>) this.taskList).setDelegate(taskList);
+        ((NabuccoListImpl<ProjectTask>) this.projectTaskList).setDelegate(projectTaskList);
     }
 
     /**
@@ -186,14 +184,14 @@ public class ProjectPosition extends NabuccoDatatype implements Datatype {
                 PropertyDescriptorSupport.createBasetype(NAME, Name.class, 3, PROPERTY_CONSTRAINTS[0], false));
         propertyMap.put(OWNER,
                 PropertyDescriptorSupport.createBasetype(OWNER, Owner.class, 4, PROPERTY_CONSTRAINTS[1], false));
-        propertyMap.put(DESCRIPTION, PropertyDescriptorSupport.createBasetype(DESCRIPTION, Description.class, 5,
+        propertyMap.put(DESCRIPTION, PropertyDescriptorSupport.createBasetype(DESCRIPTION, LongDescription.class, 5,
                 PROPERTY_CONSTRAINTS[2], false));
         propertyMap.put(PROJECTROLE, PropertyDescriptorSupport.createDatatype(PROJECTROLE, Code.class, 6,
                 PROPERTY_CONSTRAINTS[3], false, PropertyAssociationType.COMPONENT, PROJECTROLE_CODEPATH));
         propertyMap.put(ASSIGNEELIST, PropertyDescriptorSupport.createCollection(ASSIGNEELIST,
                 ProjectPositionAssignee.class, 7, PROPERTY_CONSTRAINTS[4], false, PropertyAssociationType.COMPOSITION));
-        propertyMap.put(TASKLIST, PropertyDescriptorSupport.createCollection(TASKLIST, ProjectTask.class, 8,
-                PROPERTY_CONSTRAINTS[5], false, PropertyAssociationType.COMPOSITION));
+        propertyMap.put(PROJECTTASKLIST, PropertyDescriptorSupport.createCollection(PROJECTTASKLIST, ProjectTask.class,
+                8, PROPERTY_CONSTRAINTS[5], false, PropertyAssociationType.COMPOSITION));
         return new NabuccoPropertyContainer(propertyMap);
     }
 
@@ -213,7 +211,8 @@ public class ProjectPosition extends NabuccoDatatype implements Datatype {
                 this.projectRoleRefId));
         properties.add(super.createProperty(ProjectPosition.getPropertyDescriptor(ASSIGNEELIST), this.assigneeList,
                 null));
-        properties.add(super.createProperty(ProjectPosition.getPropertyDescriptor(TASKLIST), this.taskList, null));
+        properties.add(super.createProperty(ProjectPosition.getPropertyDescriptor(PROJECTTASKLIST),
+                this.projectTaskList, null));
         return properties;
     }
 
@@ -229,8 +228,8 @@ public class ProjectPosition extends NabuccoDatatype implements Datatype {
         } else if ((property.getName().equals(OWNER) && (property.getType() == Owner.class))) {
             this.setOwner(((Owner) property.getInstance()));
             return true;
-        } else if ((property.getName().equals(DESCRIPTION) && (property.getType() == Description.class))) {
-            this.setDescription(((Description) property.getInstance()));
+        } else if ((property.getName().equals(DESCRIPTION) && (property.getType() == LongDescription.class))) {
+            this.setDescription(((LongDescription) property.getInstance()));
             return true;
         } else if ((property.getName().equals(PROJECTROLE) && (property.getType() == Code.class))) {
             this.setProjectRole(((Code) property.getInstance()));
@@ -238,8 +237,8 @@ public class ProjectPosition extends NabuccoDatatype implements Datatype {
         } else if ((property.getName().equals(ASSIGNEELIST) && (property.getType() == ProjectPositionAssignee.class))) {
             this.assigneeList = ((NabuccoList<ProjectPositionAssignee>) property.getInstance());
             return true;
-        } else if ((property.getName().equals(TASKLIST) && (property.getType() == ProjectTask.class))) {
-            this.taskList = ((NabuccoList<ProjectTask>) property.getInstance());
+        } else if ((property.getName().equals(PROJECTTASKLIST) && (property.getType() == ProjectTask.class))) {
+            this.projectTaskList = ((NabuccoList<ProjectTask>) property.getInstance());
             return true;
         }
         return false;
@@ -376,18 +375,18 @@ public class ProjectPosition extends NabuccoDatatype implements Datatype {
     /**
      * Description of the Project Position
      *
-     * @return the Description.
+     * @return the LongDescription.
      */
-    public Description getDescription() {
+    public LongDescription getDescription() {
         return this.description;
     }
 
     /**
      * Description of the Project Position
      *
-     * @param description the Description.
+     * @param description the LongDescription.
      */
-    public void setDescription(Description description) {
+    public void setDescription(LongDescription description) {
         this.description = description;
     }
 
@@ -401,7 +400,7 @@ public class ProjectPosition extends NabuccoDatatype implements Datatype {
             if ((description == null)) {
                 return;
             }
-            this.description = new Description();
+            this.description = new LongDescription();
         }
         this.description.setValue(description);
     }
@@ -464,11 +463,11 @@ public class ProjectPosition extends NabuccoDatatype implements Datatype {
      *
      * @return the NabuccoList<ProjectTask>.
      */
-    public NabuccoList<ProjectTask> getTaskList() {
-        if ((this.taskList == null)) {
-            this.taskList = new NabuccoListImpl<ProjectTask>(NabuccoCollectionState.INITIALIZED);
+    public NabuccoList<ProjectTask> getProjectTaskList() {
+        if ((this.projectTaskList == null)) {
+            this.projectTaskList = new NabuccoListImpl<ProjectTask>(NabuccoCollectionState.INITIALIZED);
         }
-        return this.taskList;
+        return this.projectTaskList;
     }
 
     /**

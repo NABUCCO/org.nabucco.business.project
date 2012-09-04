@@ -26,6 +26,10 @@ import org.nabucco.business.project.facade.datatype.ProjectTask;
 @Description	Task message
 public Message ProjectTaskMsg {
 
-	private Datatype ProjectTask[1] task;
+	@Description The task to be modified (maintained etc)
+	private Datatype ProjectTask[0..1] task;
+	
+	@Description The list of tasks to be modified (maintained etc)
+	private Datatype ProjectTask[0..*] taskList;
 	
 }

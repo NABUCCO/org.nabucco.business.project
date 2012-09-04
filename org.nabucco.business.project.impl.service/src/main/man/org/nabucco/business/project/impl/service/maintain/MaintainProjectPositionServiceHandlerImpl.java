@@ -47,7 +47,7 @@ public class MaintainProjectPositionServiceHandlerImpl extends MaintainProjectPo
 
             position = super.getPersistenceManager().persist(position);
             position.getAssigneeList().size();
-            position.getTaskList().size();
+            position.getProjectTaskList().size();
         } catch (Exception e) {
             throw new MaintainException("Error maintaining project position with id '" + position.getId() + "'.");
         }

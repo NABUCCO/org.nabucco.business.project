@@ -1,18 +1,16 @@
 /*
  * Copyright 2012 PRODYNA AG
- *
- * Licensed under the Eclipse Public License (EPL), Version 1.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
+ * 
+ * Licensed under the Eclipse Public License (EPL), Version 1.0 (the "License"); you may not use
+ * this file except in compliance with the License. You may obtain a copy of the License at
+ * 
  * http://www.opensource.org/licenses/eclipse-1.0.php or
  * http://www.nabucco.org/License.html
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * 
+ * Unless required by applicable law or agreed to in writing, software distributed under the
+ * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 package org.nabucco.business.project.facade.datatype;
 
@@ -44,13 +42,13 @@ public class ProjectPositionAssignee extends NabuccoDatatype implements Datatype
 
     private static final long serialVersionUID = 1L;
 
-    private static final String[] PROPERTY_CONSTRAINTS = { "l0,n;u0,n;m1,1;", "l0,n;u0,n;m1,1;", "m0,n;" };
+    private static final String[] PROPERTY_CONSTRAINTS = { "l0,n;u0,n;m1,1;", "l0,n;u0,n;m0,1;", "m0,n;" };
 
     public static final String STARTDATE = "startDate";
 
     public static final String ENDDATE = "endDate";
 
-    public static final String TASKLIST = "taskList";
+    public static final String PROJECTTASKLIST = "projectTaskList";
 
     /** Start Date of the Assignment. */
     private Date startDate;
@@ -59,7 +57,7 @@ public class ProjectPositionAssignee extends NabuccoDatatype implements Datatype
     private Date endDate;
 
     /** The Tasks of the project position assignee */
-    private NabuccoList<ProjectTask> taskList;
+    private NabuccoList<ProjectTask> projectTaskList;
 
     /** Constructs a new ProjectPositionAssignee instance. */
     public ProjectPositionAssignee() {
@@ -84,33 +82,33 @@ public class ProjectPositionAssignee extends NabuccoDatatype implements Datatype
         if ((this.getEndDate() != null)) {
             clone.setEndDate(this.getEndDate().cloneObject());
         }
-        if ((this.taskList != null)) {
-            clone.taskList = this.taskList.cloneCollection();
+        if ((this.projectTaskList != null)) {
+            clone.projectTaskList = this.projectTaskList.cloneCollection();
         }
     }
 
     /**
-     * Getter for the TaskListJPA.
+     * Getter for the ProjectTaskListJPA.
      *
      * @return the List<ProjectTask>.
      */
-    List<ProjectTask> getTaskListJPA() {
-        if ((this.taskList == null)) {
-            this.taskList = new NabuccoListImpl<ProjectTask>(NabuccoCollectionState.LAZY);
+    List<ProjectTask> getProjectTaskListJPA() {
+        if ((this.projectTaskList == null)) {
+            this.projectTaskList = new NabuccoListImpl<ProjectTask>(NabuccoCollectionState.LAZY);
         }
-        return ((NabuccoListImpl<ProjectTask>) this.taskList).getDelegate();
+        return ((NabuccoListImpl<ProjectTask>) this.projectTaskList).getDelegate();
     }
 
     /**
-     * Setter for the TaskListJPA.
+     * Setter for the ProjectTaskListJPA.
      *
-     * @param taskList the List<ProjectTask>.
+     * @param projectTaskList the List<ProjectTask>.
      */
-    void setTaskListJPA(List<ProjectTask> taskList) {
-        if ((this.taskList == null)) {
-            this.taskList = new NabuccoListImpl<ProjectTask>(NabuccoCollectionState.LAZY);
+    void setProjectTaskListJPA(List<ProjectTask> projectTaskList) {
+        if ((this.projectTaskList == null)) {
+            this.projectTaskList = new NabuccoListImpl<ProjectTask>(NabuccoCollectionState.LAZY);
         }
-        ((NabuccoListImpl<ProjectTask>) this.taskList).setDelegate(taskList);
+        ((NabuccoListImpl<ProjectTask>) this.projectTaskList).setDelegate(projectTaskList);
     }
 
     /**
@@ -125,8 +123,8 @@ public class ProjectPositionAssignee extends NabuccoDatatype implements Datatype
                 PropertyDescriptorSupport.createBasetype(STARTDATE, Date.class, 3, PROPERTY_CONSTRAINTS[0], false));
         propertyMap.put(ENDDATE,
                 PropertyDescriptorSupport.createBasetype(ENDDATE, Date.class, 4, PROPERTY_CONSTRAINTS[1], false));
-        propertyMap.put(TASKLIST, PropertyDescriptorSupport.createCollection(TASKLIST, ProjectTask.class, 5,
-                PROPERTY_CONSTRAINTS[2], false, PropertyAssociationType.COMPOSITION));
+        propertyMap.put(PROJECTTASKLIST, PropertyDescriptorSupport.createCollection(PROJECTTASKLIST, ProjectTask.class,
+                5, PROPERTY_CONSTRAINTS[2], false, PropertyAssociationType.COMPOSITION));
         return new NabuccoPropertyContainer(propertyMap);
     }
 
@@ -142,8 +140,8 @@ public class ProjectPositionAssignee extends NabuccoDatatype implements Datatype
                 null));
         properties
                 .add(super.createProperty(ProjectPositionAssignee.getPropertyDescriptor(ENDDATE), this.endDate, null));
-        properties.add(super.createProperty(ProjectPositionAssignee.getPropertyDescriptor(TASKLIST), this.taskList,
-                null));
+        properties.add(super.createProperty(ProjectPositionAssignee.getPropertyDescriptor(PROJECTTASKLIST),
+                this.projectTaskList, null));
         return properties;
     }
 
@@ -159,8 +157,8 @@ public class ProjectPositionAssignee extends NabuccoDatatype implements Datatype
         } else if ((property.getName().equals(ENDDATE) && (property.getType() == Date.class))) {
             this.setEndDate(((Date) property.getInstance()));
             return true;
-        } else if ((property.getName().equals(TASKLIST) && (property.getType() == ProjectTask.class))) {
-            this.taskList = ((NabuccoList<ProjectTask>) property.getInstance());
+        } else if ((property.getName().equals(PROJECTTASKLIST) && (property.getType() == ProjectTask.class))) {
+            this.projectTaskList = ((NabuccoList<ProjectTask>) property.getInstance());
             return true;
         }
         return false;
@@ -281,11 +279,11 @@ public class ProjectPositionAssignee extends NabuccoDatatype implements Datatype
      *
      * @return the NabuccoList<ProjectTask>.
      */
-    public NabuccoList<ProjectTask> getTaskList() {
-        if ((this.taskList == null)) {
-            this.taskList = new NabuccoListImpl<ProjectTask>(NabuccoCollectionState.INITIALIZED);
+    public NabuccoList<ProjectTask> getProjectTaskList() {
+        if ((this.projectTaskList == null)) {
+            this.projectTaskList = new NabuccoListImpl<ProjectTask>(NabuccoCollectionState.INITIALIZED);
         }
-        return this.taskList;
+        return this.projectTaskList;
     }
 
     /**

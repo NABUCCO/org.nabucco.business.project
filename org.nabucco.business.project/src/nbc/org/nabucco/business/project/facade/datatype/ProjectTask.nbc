@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 PRODYNA AG
+ * Copyright 2012 PRODYNA AG
  *
  * Licensed under the Eclipse Public License (EPL), Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,9 @@
  */
 package org.nabucco.business.project.facade.datatype;
 
-import org.nabucco.framework.base.facade.datatype.Description;
 import org.nabucco.framework.base.facade.datatype.NabuccoDatatype;
 import org.nabucco.framework.base.facade.datatype.Name;
+import org.nabucco.framework.base.facade.datatype.text.LongDescription;
 
 @Author			Leonid Agranovskiy
 @Company		PRODYNA AG
@@ -31,7 +31,7 @@ public Datatype ProjectTask extends NabuccoDatatype {
 	private Basetype Name[1] name;
 	
 	@Description		Deschription of the task
-	private Basetype Description[0..1] description;
+	private Basetype LongDescription[0..1] description;
 		
 }
 

@@ -73,11 +73,11 @@ public class SearchForAssigneeRelatedElementsServiceHandlerImpl extends SearchFo
                     container.setProject(project);
 
                     ProjectPosition projectPosition = (ProjectPosition) res[1];
-                    projectPosition.getTaskList().size();
+                    projectPosition.getProjectTaskList().size();
                     container.setProjectPosition(projectPosition);
 
                     ProjectPositionAssignee assignee = (ProjectPositionAssignee) res[2];
-                    assignee.getTaskList().size();
+                    assignee.getProjectTaskList().size();
                     container.setProjectPositionAssignee(assignee);
 
                     rs.getAssigneeContainerList().add(container);
